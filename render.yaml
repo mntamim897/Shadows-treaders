@@ -1,15 +1,9 @@
 # render.yaml
 services:
-  - type: worker
-    name: binary-trading-bot
+  - type: web # Keep as web for the free tier
+    name: binary-trading-bot # Corrected typo
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: python watchdog.py
-    envVars:
-      - key: TELEGRAM_BOT_TOKEN
-        value: 7677936243:AAEfZ-LzsWC-gEnE5TKiM7WCGnQilTL1MyU
-      - key: ADMIN_CHAT_ID
-        value: 5679669495
-      - key: SIGNAL_TIMEFRAMES
-        value: 1,5
     plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py # Changed to run the Flask wrapper
+    # envVars: section removed - Set TELEGRAM_BOT_TOKEN in Render Dashboard Environment
